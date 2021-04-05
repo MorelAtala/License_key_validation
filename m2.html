@@ -1,0 +1,139 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>M2.key</title>
+<meta charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="m2.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+<div class="wrapper-gen">
+  
+  <button class="form-gen" id="keygen">Generate API Key</button>
+  
+  <input class="form-gen" id="apikey" type="text" value="" placeholder="Click on the button to generate a new API key ..."  />
+    
+</div>
+
+<div class="wrapper-valid">
+  
+  <input class="form-valid" id="key" type="text" value="" placeholder="Enter your API key and let us evaluate it"  />
+  <button class="form-valid" id="keyval">Validate API Key</button>
+  
+<p id="p1"></p>
+  
+		<button type="submit" class="form-valid" onClick="refreshPage()">Refresh Button</button>
+
+</div>
+
+<script >
+
+/**
+ * Function to produce UUID.
+ */
+function generateUUID()
+{
+	var d = new Date().getTime();
+	
+	if( window.performance && typeof window.performance.now === "function" )
+	{
+		d += performance.now();
+	}
+	
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+	{
+		var r = (d + Math.random()*16)%16 | 0;
+		d = Math.floor(d/16);
+		return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+	});
+
+return uuid;
+}
+
+/**
+ * Generate new key and insert into input value
+*/ 
+$( '#keygen' ).on('click',function()
+{
+	$( '#apikey' ).val( generateUUID() );
+});
+
+
+/**
+ * Get the value of the text field and test if the key is valid 
+*/ 
+
+var key = document.getElementById('key').value ;
+
+function validateKey()
+{
+
+  if ( key == '' )
+  {
+  	document.getElementById("p1").innerHTML = "empty field!";
+  }
+ 
+else if ( key.includes("-") ) 
+{
+document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else if ( key.includes("m") ) 
+{
+document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else if ( key.includes("M") ) 
+{
+document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else if ( key.includes("2") ) 
+{
+document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else if ( key.includes("f") ) 
+{
+document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else if ( key.includes("F") ) 
+{
+	document.getElementById("p1").innerHTML = "Your License is valid!";
+}
+
+else {
+			document.getElementById("p1").innerHTML = "You have to buy a valid License!";
+
+}
+
+}
+
+  $("#key").keypress(function(event) {
+            if (event.keyCode === 13) {
+                $("#keyval").click();
+            }
+        });
+
+$( '#keyval' ).on( 'click', validateKey );
+
+
+function refreshPage()
+{
+ 
+ key = '';
+ window.location.reload();
+
+}
+
+</script>
+
+
+
+</body>
+</html>

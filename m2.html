@@ -67,11 +67,11 @@ $( '#keygen' ).on('click',function()
  * Get the value of the text field and test if the key is valid 
 */ 
 
-var key = document.getElementById('key').value ;
+var key ;
 
 function validateKey()
 {
-
+var key = document.getElementById('key').value ;
   if ( key == '' )
   {
   	document.getElementById("p1").innerHTML = "empty field!";
